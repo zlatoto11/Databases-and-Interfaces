@@ -1,0 +1,39 @@
+
+SELECT * FROM `CD` WHERE cdGenre = 'Electronica'
+
+ 
+SELECT * FROM `CD` WHERE cdPrice < 10.00 
+
+SELECT * FROM CD WHERE (cdPrice < 10.00) OR (cdGenre = 'Pop');
+
+
+SELECT * FROM CD WHERE (cdPrice > 10.00) AND NOT (cdPrice > 12.00) AND (cdGenre = 'Rock');
+
+
+SELECT cdTitle FROM CD WHERE (cdPrice < 10.00) AND ((cdGenre = 'Rock') OR (cdGenre = 'Electronica')) 
+
+ 
+SELECT * FROM Artist,CD WHERE Artist.artID = CD.artID
+
+SELECT cdTitle FROM CD WHERE artID = (SELECT artID FROM Artist WHERE artName = 'Muse')
+
+
+SELECT cdTitle FROM CD WHERE cdGenre = (SELECT cdGenre FROM CD WHERE cdTitle = 'The Resistance');
+
+
+SELECT cdTitle FROM CD  Where cdPrice IN (SELECT cdPrice FROM CD  WHERE cdGenre = 'Pop');
+
+ 
+SELECT cdTitle FROM CD WHERE cdPrice > ANY (SELECT cdPrice FROM CD);
+
+SELECT cdTitle FROM CD WHERE cdPrice >= ALL (SELECT cdPrice FROM CD);
+
+
+SELECT artName FROM Artist WHERE EXISTS (SELECT * FROM CD WHERE cdGenre = 'Electronica' and Artist.artID = artID);
+
+SELECT artName FROM Artist WHERE EXISTS (SELECT * FROM CD WHERE cdPrice < 10.00 and Artist.artID = artID)
+
+
+SELECT cdTitle FROM CD WHERE EXISTS (SELECT artName FROM Artist WHERE Artist.artID = CD.artID AND REPLACE (artName,' ','') = artName);
+
+

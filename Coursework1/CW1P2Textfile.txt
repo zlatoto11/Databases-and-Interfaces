@@ -1,0 +1,22 @@
+
+SELECT cdTitle, cdPrice FROM CD ORDER BY cdPrice DESC 	
+
+SELECT cdTitle, cdPrice FROM CD ORDER BY cdPrice ASC
+
+SELECT cdTitle, cdPrice, cdGenre FROM CD ORDER BY cdPrice DESC ,cdGenre ASC
+
+SELECT MIN(cdPrice) FROM CD
+
+SELECT COUNT(cdPrice) FROM CD WHERE cdPrice = 11.99
+
+SELECT cdTitle FROM CD where cdPrice = (SELECT MAX(cdPrice) from CD) AND cdGenre = 'Rock'
+
+SELECT COUNT(DISTINCT cdGenre) FROM CD
+
+SELECT * FROM CD WHERE cdPrice = (SELECT MIN(cdPrice) FROM CD);
+
+SELECT artName, AVG(cdPrice), COUNT(*) FROM CD, Artist WHERE Artist.artID = CD.artID GROUP BY Artist.artID HAVING COUNT(*) > 1
+
+SELECT artName, AVG(cdPrice), COUNT(*) FROM CD, Artist WHERE cdGenre != 'Electronica' AND
+Artist.artID = CD.artID GROUP BY Artist.artID
+
